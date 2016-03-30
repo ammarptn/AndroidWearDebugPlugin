@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_androidweardebugplugin" default="compile.module.androidweardebugplugin">
+  <dirname property="module.androidweardebugplugin.basedir" file="${ant.file.module_androidweardebugplugin}"/>
+  
+  <property name="module.jdk.home.androidweardebugplugin" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.androidweardebugplugin" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.androidweardebugplugin" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.androidweardebugplugin" value="-encoding x-windows-874 -source 8 ${compiler.args}"/>
+  
+  <property name="androidweardebugplugin.output.dir" value="${module.androidweardebugplugin.basedir}/out/production/AndroidWearDebugPlugin"/>
+  <property name="androidweardebugplugin.testoutput.dir" value="${module.androidweardebugplugin.basedir}/out/test/AndroidWearDebugPlugin"/>
+  
+  <path id="androidweardebugplugin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androidweardebugplugin.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidweardebugplugin}"/>
+  </path>
+  
+  <path id="androidweardebugplugin.runtime.production.module.classpath">
+    <pathelement location="${androidweardebugplugin.output.dir}"/>
+  </path>
+  
+  <path id="androidweardebugplugin.module.classpath">
+    <path refid="${module.jdk.classpath.androidweardebugplugin}"/>
+    <pathelement location="${androidweardebugplugin.output.dir}"/>
+  </path>
+  
+  <path id="androidweardebugplugin.runtime.module.classpath">
+    <pathelement location="${androidweardebugplugin.testoutput.dir}"/>
+    <pathelement location="${androidweardebugplugin.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androidweardebugplugin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androidweardebugplugin">
+    <patternset refid="excluded.from.module.androidweardebugplugin"/>
+  </patternset>
+  
+  <path id="androidweardebugplugin.module.sourcepath">
+    <dirset dir="${module.androidweardebugplugin.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.androidweardebugplugin" depends="compile.module.androidweardebugplugin.production,compile.module.androidweardebugplugin.tests" description="Compile module AndroidWearDebugPlugin"/>
+  
+  <target name="compile.module.androidweardebugplugin.production" depends="register.custom.compilers" description="Compile module AndroidWearDebugPlugin; production classes">
+    <mkdir dir="${androidweardebugplugin.output.dir}"/>
+    <javac2 destdir="${androidweardebugplugin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidweardebugplugin}/javac">
+      <compilerarg line="${compiler.args.androidweardebugplugin}"/>
+      <bootclasspath refid="androidweardebugplugin.module.bootclasspath"/>
+      <classpath refid="androidweardebugplugin.module.production.classpath"/>
+      <src refid="androidweardebugplugin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidweardebugplugin"/>
+    </javac2>
+    
+    <copy todir="${androidweardebugplugin.output.dir}">
+      <fileset dir="${module.androidweardebugplugin.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.androidweardebugplugin.tests" depends="register.custom.compilers,compile.module.androidweardebugplugin.production" description="compile module AndroidWearDebugPlugin; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.androidweardebugplugin" description="cleanup module">
+    <delete dir="${androidweardebugplugin.output.dir}"/>
+    <delete dir="${androidweardebugplugin.testoutput.dir}"/>
+  </target>
+  
+  <property name="androidweardebugplugin.plugin.path.jar" value="${module.androidweardebugplugin.basedir}/AndroidWearDebugPlugin.jar"/>
+  
+  <!-- Build archive for plugin 'AndroidWearDebugPlugin' -->
+  <target name="plugin.build.jar.androidweardebugplugin" depends="compile.module.androidweardebugplugin" description="Build plugin archive for module &#39;AndroidWearDebugPlugin&#39;">
+    <jar destfile="${androidweardebugplugin.plugin.path.jar}" duplicate="preserve">
+      <zipfileset dir="${module.androidweardebugplugin.basedir}/out/production/AndroidWearDebugPlugin"/>
+      <zipfileset file="${module.androidweardebugplugin.basedir}/META-INF/plugin.xml" prefix="META-INF"/>
+      <manifest>
+        <attribute name="Created-By" value="IntelliJ IDEA"/>
+        <attribute name="Manifest-Version" value="1.0"/>
+      </manifest>
+    </jar>
+  </target>
+</project>
