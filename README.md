@@ -27,6 +27,7 @@ On Android studio
   11. Good luck!!
   
 if it can't connect
+  - check if you set ANDROID_HOME (android sdk location) as enviromental variable
   - check if your watch is enable ADB debugging
   - check if your ADB can see you companion device.
   - check if your companion devices enable debug over bluetooth.
