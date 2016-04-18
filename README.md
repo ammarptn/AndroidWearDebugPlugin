@@ -27,6 +27,7 @@ On Android studio
   11. Good luck!!
   
 if it can't connect
+![android plugin error][1]
   - check if you set ANDROID_HOME (android sdk location) as enviromental variable
   - check if your watch is enable ADB debugging
   - check if your ADB can see you companion device.
@@ -40,6 +41,6 @@ if it can't connect
 If your ADB connect with two or more devices. it will unable to connect. Unplug other devices and left with the devices that you connect with android wear watch.
 (im very busy to fix this. really sorry about that)
 
-  
+  [1]: https://farm2.staticflickr.com/1564/25899324874_5a9edef9b1.jpg
 
 
