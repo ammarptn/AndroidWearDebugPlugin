@@ -9,11 +9,11 @@ version 1.0 :
 (install AndroidWearDebugPlugin.jar in your Android studio first)
  [AndroidWearDebugPlugin.jar](https://github.com/ammarptn/AndroidWearDebugPlugin/blob/master/AndroidWearDebugPlugin.jar)
 
-On android wear
+***On android wear***
   1. Open setting on the watch and enable developer option
   2. Enable ADB debugging and Debuging over bluetooth.
 
-On companion device
+***On companion device***
   3. Open ADB debuging on your devices.
   4. Open Android wear application
   5. Tap Gear icon on the top right
@@ -21,12 +21,12 @@ On companion device
   7. Enable Debug over bluetooth.
   8. Connect your devices with your computer.
   
-On Android studio
+***On Android studio***
   9. Click the android wear icon and you can access your watch via ADB
   10. Your android watch name will apper in ADB as "127.0.0.1:4444"
   11. Good luck!!
   
-if it can't connect
+**if it can't connect**
 
 ![android plugin error][1]
 
